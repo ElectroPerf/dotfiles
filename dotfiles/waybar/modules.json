@@ -218,7 +218,7 @@
 
     // Clock
     "clock": {
-        "format": "{:%H:%M %a}",
+        "format": "{:%I:%M %p - %a}",
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         // START CLOCK FORMAT

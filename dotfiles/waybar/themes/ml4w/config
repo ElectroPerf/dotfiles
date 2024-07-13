@@ -11,7 +11,7 @@
 {
     // General Settings
     "layer": "top",
-    "margin-top": 14,
+    "margin-top": 5,
     "margin-bottom": 0,
     "layer": "top",
     "margin-left": 0,
@@ -29,7 +29,7 @@
         "custom/appmenu",
         "group/links",
         "group/settings",
-        //"wlr/taskbar",
+        "wlr/taskbar",
         "group/quicklinks",
         "hyprland/window",
         "custom/empty"
