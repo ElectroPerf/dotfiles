@@ -55,6 +55,7 @@
         "bluetooth",
         "battery", 
         "network",
+        "network#speed",
         "group/hardware",
         "custom/cliphist",
         "custom/hypridle",

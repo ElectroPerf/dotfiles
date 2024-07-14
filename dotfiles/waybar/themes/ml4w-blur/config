@@ -47,6 +47,7 @@
         "bluetooth",
         "battery", 
         "network",
+        "network#speed",
         "group/hardware",
         "group/tools",
         "tray",
