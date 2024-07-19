@@ -121,9 +121,9 @@ echo
 echo "Please choose between the main-release or the rolling-release (development version):"
 version=$(gum choose "main-release" "rolling-release")
 if [ "$version" == "main-release" ] ;then
-    git clone -b main --single-branch --depth 1 https://gitlab.com/stephan-raabe/dotfiles.git ~/Downloads/dotfiles
+    git clone -b main --single-branch --depth 1 https://github.com/ElectroPerf/dotfiles.git ~/Downloads/dotfiles
 elif [ "$version" == "rolling-release" ] ;then
-    git clone -b dev --single-branch --depth 1 https://gitlab.com/stephan-raabe/dotfiles.git ~/Downloads/dotfiles
+    git clone -b dev --single-branch --depth 1 https://github.com/ElectroPerf/dotfiles.git ~/Downloads/dotfiles
 else
     exit 130
 fi
@@ -132,7 +132,7 @@ echo ":: Download complete."
 # Change into dotfiles folder
 cd $HOME/Downloads/dotfiles
 echo ":: Changed into ~/Downloads/dotfiles/"
-echo 
+echo
 
 # Start Spinner
 gum spin --spinner dot --title "Starting the installation now..." -- sleep 3
