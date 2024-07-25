@@ -1,6 +1,22 @@
 #!/bin/bash
 clear
 
+repo="mylinuxforwork/dotfiles"
+
+# Get latest tag from GitHub
+get_latest_release() {
+  curl --silent "https://api.github.com/repos/$repo/releases/latest" | # Get latest release from GitHub api
+    grep '"tag_name":' |                                            # Get tag line
+    sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
+}
+
+# Get latest zip from GitHub
+get_latest_zip() {
+  curl --silent "https://api.github.com/repos/$repo/releases/latest" | # Get latest release from GitHub api
+    grep '"zipball_url":' |                                            # Get tag line
+    sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
+}
+
 # Check if package is installed
 _isInstalledPacman() {
     package="$1";
@@ -37,6 +53,7 @@ packages=(
     "unzip"
     "gum"
     "rsync"
+    "git"
 )
 
 # Some colors
@@ -53,7 +70,7 @@ cat <<"EOF"
 |___|_| |_|___/\__\__,_|_|_|\___|_|   
                                       
 EOF
-echo "for ML4W Dotfiles"
+echo "for ML4W Dotfiles $(get_latest_release)"
 echo
 echo -e "${NONE}"
 echo "This script will support you to download and install the ML4W Dotfiles".
@@ -92,6 +109,9 @@ fi
 if [ -d $HOME/Downloads/dotfiles ] ;then
     rm -rf $HOME/Downloads/dotfiles
 fi
+if [ -d $HOME/Downloads/dotfiles_temp ] ;then
+    rm -rf $HOME/Downloads/dotfiles_temp
+fi
 if [ -d $HOME/Downloads/dotfiles-main ] ;then
     rm -rf $HOME/Downloads/dotfiles-main
 fi
@@ -117,23 +137,13 @@ else
 fi
 echo
 
-# Select the dotfiles version
-echo "Please choose between the main-release or the rolling-release (development version):"
-version=$(gum choose "main-release" "rolling-release")
-if [ "$version" == "main-release" ] ;then
-    git clone -b main --single-branch --depth 1 https://github.com/ElectroPerf/dotfiles.git ~/Downloads/dotfiles
-elif [ "$version" == "rolling-release" ] ;then
-    git clone -b dev --single-branch --depth 1 https://github.com/ElectroPerf/dotfiles.git ~/Downloads/dotfiles
-else
-    exit 130
-fi
-echo ":: Download complete."
+git clone --depth 1 https://github.com/mylinuxforwork/dotfiles.git ~/Downloads/dotfiles
+echo ":: Clone complete."
 
 # Change into dotfiles folder
 cd $HOME/Downloads/dotfiles
 echo ":: Changed into ~/Downloads/dotfiles/"
-echo
-
+echo 
 # Start Spinner
 gum spin --spinner dot --title "Starting the installation now..." -- sleep 3
 ./install.sh

@@ -60,12 +60,6 @@ if [[ $profile == *"Qtile"* ]]; then
     source .install/packages/qtile-packages.sh
     source .install/install_packages.sh
 fi
-# Prompt for NVIDIA graphics card
-echo -e "${YELLOW}Do you have an NVIDIA graphics card? (yes/no)${NONE}"
-read nvidia_response
-if [[ $nvidia_response == "yes" ]]; then
-    source .install/nvidia.sh
-fi
 source .install/browser.sh
 source .install/wallpaper.sh
 source .install/displaymanager.sh
