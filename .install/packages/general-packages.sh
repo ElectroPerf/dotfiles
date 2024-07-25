@@ -31,7 +31,7 @@ packagesPacman=(
     "tumbler" 
     "papirus-icon-theme"
     "breeze-icons"
-    "polkit-kde-agent"
+    "polkit-gnome"
     "brightnessctl"
     "gum"
     "man-pages"
@@ -55,6 +55,7 @@ packagesPacman=(
     "rofi-wayland"
     "fastfetch"
     "blueman"
+    "xclip"
 );
 
 packagesYay=(

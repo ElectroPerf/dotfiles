@@ -1,5 +1,5 @@
 echo -e "${GREEN}"
-figlet "System check"
+figlet "Diagnosis"
 echo -e "${NONE}"
 
 echo "The system check will test that essential packages and "
@@ -14,6 +14,7 @@ if gum confirm "Do you want to run a short system check?" ;then
     _commandExists "hyprpaper" "hyprpaper"
     _commandExists "hyprlock" "hyprpaper"
     _commandExists "hypridle" "hyprpaper"
+    _commandExists "hyprshade" "hyprshade"
     _commandExists "wal" "python-pywal"
     _commandExists "gum" "gum"
     _commandExists "wlogout" "wlogout"
