@@ -1,18 +1,19 @@
-import RegularWindow from "widget/RegularWindow"
-import icons from "lib/icons"
-import options from "options"
-import { ThemesMenu } from "./pages/theme/index"
-import { SettingsMenu } from "./pages/config/index"
+import Gtk from "gi://Gtk?version=3.0";
+import RegularWindow from "widget/RegularWindow";
+import icons from "lib/icons";
+import options from "options";
+import { ThemesMenu } from "./pages/theme/index";
+import { SettingsMenu } from "./pages/config/index";
 import "./side_effects";
 
-type Page = "Configuration" | "Theming"
+type Page = "Configuration" | "Theming";
 
 const CurrentPage = Variable<Page>("Configuration");
 
 const pagerMap: Page[] = [
     "Configuration",
     "Theming",
-]
+];
 
 const Header = () => Widget.CenterBox({
     class_name: "header",
@@ -25,7 +26,7 @@ const Header = () => Widget.CenterBox({
         tooltip_text: "Reset",
     }),
     center_widget: Widget.Box({
-
+        hexpand: true,  // Expand the center widget to take up available space
     }),
     end_widget: Widget.Button({
         class_name: "close",
@@ -34,12 +35,13 @@ const Header = () => Widget.CenterBox({
         child: Widget.Icon(icons.ui.close),
         on_clicked: () => App.closeWindow("settings-dialog"),
     }),
-})
+});
 
 const PageContainer = () => {
     return Widget.Box({
         hpack: "fill",
         hexpand: true,
+        vexpand: true,  // Expand the PageContainer to take up vertical space
         vertical: true,
         children: CurrentPage.bind("value").as(v => {
             return [
@@ -47,29 +49,31 @@ const PageContainer = () => {
                     class_name: "option-pages-container",
                     hpack: "center",
                     hexpand: true,
+                    vexpand: false,
                     children: pagerMap.map((page) => {
                         return Widget.Button({
                             xalign: 0,
                             hpack: "center",
                             class_name: `pager-button ${v === page ? 'active' : ''} category`,
                             label: page,
-                            on_primary_click: () => CurrentPage.value = page
-                        })
-                    })
+                            on_primary_click: () => CurrentPage.value = page,
+                        });
+                    }),
                 }),
                 Widget.Stack({
-                    vexpand: false,
+                    vexpand: true,  // Allow the stack to expand and use vertical space
+                    hexpand: true,  // Allow the stack to expand and use horizontal space
                     class_name: "themes-menu-stack",
                     children: {
                         "Configuration": SettingsMenu(),
                         "Theming": ThemesMenu(),
                     },
-                    shown: CurrentPage.bind("value")
-                })
-            ]
-        })
-    })
-}
+                    shown: CurrentPage.bind("value"),
+                }),
+            ];
+        }),
+    });
+};
 
 export default () => RegularWindow({
     name: "settings-dialog",
@@ -77,17 +81,19 @@ export default () => RegularWindow({
     title: "Settings",
     setup(win) {
         win.on("delete-event", () => {
-            win.hide()
-            return true
-        })
-        win.set_default_size(200, 300)
+            win.hide();
+            return true;
+        });
+        win.set_default_size(600, 400);  // Set the default size of the window
     },
     child: Widget.Box({
         class_name: "settings-dialog-box",
         vertical: true,
+        hexpand: true,
+        vexpand: true,
         children: [
             Header(),
-            PageContainer()
+            PageContainer(),
         ],
     }),
-})
+});
