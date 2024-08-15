@@ -13,12 +13,23 @@ export const Padding = (name: string) =>
         setup: (w) => w.on("button-press-event", () => App.toggleWindow(name)),
     });
 
+// Debounce function to limit the rate at which a function is executed
+const debounce = (func, delay) => {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+};
+
 const moveBoxToCursor = (self, fixed) => {
     if (fixed) {
         return;
     }
 
-    globalMousePos.connect("changed", async ({ value }) => {
+    const handleMousePositionChange = debounce(async ({ value }) => {
         const curHyprlandMonitor = hyprland.monitors.find(m => m.id === hyprland.active.monitor.id);
         const dropdownWidth = self.child.get_allocation().width;
 
@@ -84,11 +95,13 @@ const moveBoxToCursor = (self, fixed) => {
         self.set_margin_left(marginLeft);
         self.set_margin_right(marginRight);
         self.set_margin_bottom(marginBottom);
-    });
+    }, 50); // Adjust the debounce delay as needed
+
+    globalMousePos.connect("changed", handleMousePositionChange);
 };
 
 // NOTE: We make the window visible for 2 seconds (on startup) so the child
-// elements can allocat their proper dimensions.
+// elements can allocate their proper dimensions.
 // Otherwise the width that we rely on for menu positioning is set improperly
 // for the first time we open a menu of each type.
 const initRender = Variable(true);
