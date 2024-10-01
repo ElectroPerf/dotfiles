@@ -33,13 +33,13 @@
 
     // Modules Left
     "modules-left": [
-        "custom/appmenu",
+"custom/appmenu",
         "custom/settings",
         "custom/waybarthemes",
         "custom/wallpaper",
         //"wlr/taskbar",
         "group/quicklinks",
-"hyprland/window",
+//"hyprland/window",
         "custom/starter"
     ],
 
