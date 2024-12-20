@@ -31,9 +31,5 @@ magick "$logo_path" \
     done) \
     "$output_path"
 
-# Output the final recolored PNG path for Fastfetch
-echo "Logo generated at: $output_path"
-
 # clear fastfetch cache
-echo "clearing fastfetch cache..."
 rm -rf "$HOME/.cache/fastfetch"
