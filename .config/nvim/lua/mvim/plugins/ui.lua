@@ -153,9 +153,9 @@ local M = {
     opts = {
       cmdline = { view = "cmdline" },
       lsp = {
-        -- signature = {
-        --   enabled = false,
-        -- },
+        signature = {
+          enabled = false,
+        },
         documentation = {
           opts = {
             size = {
@@ -167,7 +167,6 @@ local M = {
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
         },
       },
       routes = {
