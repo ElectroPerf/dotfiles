@@ -5,16 +5,14 @@ local M = {}
 ---@param func fun(client: vim.lsp.Client, buffer: number)
 ---@param name? string
 function M.on_attach(func, name)
-  Mo.U.augroup("LspOnAttach", {
-    event = "LspAttach",
-    command = function(args)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
       local buffer = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
       if client and (not name or client.name == name) then
         func(client, buffer)
       end
     end,
-    desc = "Setup the language server autocommands",
   })
 end
 
@@ -69,7 +67,7 @@ function M.common_capabilities()
       },
     },
     vim.lsp.protocol.make_client_capabilities(),
-    Mo.U.has("cmp-nvim-lsp") and require("cmp_nvim_lsp").default_capabilities() or {},
+    -- TODO: remove this line when neovim 0.11 reaches EOL
     Mo.U.has("blink.cmp") and require("blink.cmp").get_lsp_capabilities() or {},
     Mo.U.has("nvim-ufo")
         and {

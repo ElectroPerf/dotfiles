@@ -1,15 +1,5 @@
 local M = {
   {
-    "dhruvasagar/vim-table-mode",
-    enabled = false,
-    cmd = "TableModeToggle",
-    ft = { "markdown" },
-    keys = {
-      { "<leader>mt", "<Cmd>TableModeToggle<CR>", desc = "Toggle table mode" },
-    },
-  },
-
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = "markdown",
     keys = {
@@ -24,6 +14,8 @@ local M = {
         min_width = 60,
         left_pad = 2,
         right_pad = 2,
+        inline_pad = 1,
+        language_pad = 1,
       },
       pipe_table = {
         preset = "round",

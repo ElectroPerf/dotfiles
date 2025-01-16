@@ -24,6 +24,7 @@ local M = {
         noice = true,
         snacks = true,
         neotest = true,
+        blink_cmp = true,
         which_key = true,
         nvim_surround = true,
         telescope = { style = Mo.C.transparent and nil or "nvchad" },
@@ -36,6 +37,11 @@ local M = {
             bg = Mo.C.transparent and colors.none or colors.crust,
             style = { "bold", "italic" },
           },
+
+          -- snacks.nvim]
+          SnacksIndent = { fg = colors.surface0 },
+          SnacksIndentScope = { fg = colors.lavender },
+          SnacksIndentChunk = { fg = colors.lavender },
 
           -- lazy.nvim
           LazyH1 = {
@@ -53,8 +59,6 @@ local M = {
             style = { "bold" },
           },
           LazySpecial = { fg = colors.green },
-
-          CmpItemMenu = { fg = colors.subtext1 },
 
           FloatBorder = {
             fg = Mo.C.transparent and colors.blue or colors.mantle,
