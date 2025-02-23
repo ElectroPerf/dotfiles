@@ -135,11 +135,10 @@ local M = {
     },
     config = function(_, opts)
       require("mvim.plugins.lsp.diagnostic").setup()
-      require("lspconfig.ui.windows").default_options.border = Mo.C.border
 
       Mo.U.lsp.on_attach(function(client, buffer)
         require("mvim.plugins.lsp.keymaps").on_attach(client, buffer)
-        require("mvim.plugins.lsp.codelens").on_attach(client, buffer)
+        -- require("mvim.plugins.lsp.codelens").on_attach(client, buffer)
       end)
 
       ---@param server string server name
