@@ -2,3 +2,4 @@ __pycache__/
 bookmarks
 .idea
 .config/ml4w/cache/
+.config/nvim/lazy-lock.json
