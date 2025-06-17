@@ -1,0 +1,18 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[user]
+	email = kunmun@aospa.co
+	name = Kunmun
+	signingkey = /home/tattwamashi/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[pull]
+	rebase = false
+[init]
+	templatedir = ~/.git-templates
