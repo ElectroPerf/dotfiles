@@ -182,12 +182,11 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
-  // Hyprshade
+  // Hyprsunset
   "custom/hyprshade": {
     "format": "",
     "tooltip-format": "Toggle Screen Shader",
-    "on-click": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh",
-    "on-click-right": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh rofi",
+    "on-click": "sleep 0.5; ~/.config/ml4w/scripts/ml4w-toggle-hyprsunset",
     "on-scroll-up": "true",
     "on-scroll-down": "true"
   },
@@ -222,7 +221,7 @@
   },
   // Clock
   "clock": {
-        "format": "{:%I:%M %p - %a %Od.%Om.%y}",
+        "format": "{:%I:%M %p - %a %Od.%Om.%Y}",
     "on-click": "flatpak run com.ml4w.calendar",
     "timezone": "",
     "tooltip": false
