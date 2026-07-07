@@ -19,4 +19,4 @@ hl.config({
 })
 
 -- Handle multi-finger touchpad actions explicitly outside the main block
-hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+-- hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })

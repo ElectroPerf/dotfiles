@@ -5,14 +5,14 @@
 -- Workspaces
 hl.gesture({
     fingers = 3,
-    direction = "vertical",
+    direction = "horizontal",
     action = "workspace"
 })
 
 -- Scrolling
 hl.gesture({
     fingers = 3,
-    direction = "horizontal",
+    direction = "vertical",
     action = "scroll_move",
     scale = 0.9,
 })
